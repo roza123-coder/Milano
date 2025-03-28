@@ -1,0 +1,32 @@
+{
+  // Автосохранение файлов
+  "files.autoSave": "onFocusChange", // Включает автосохранение после задержки
+  "files.autoSaveDelay": 1000, // Задержка в 1000 миллисекунд (1 секунда)
+
+  // Форматирование кода при сохранении
+  "editor.formatOnSave": true, // Форматирует код при сохранении файла
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Указывает Prettier как основной форматировщик
+
+  // Форматирование при вставке текста
+  "editor.formatOnPaste": true, // Форматирует код при вставке текста
+
+  // Форматирование при вводе текста
+  "editor.formatOnType": true, // Форматирует код при наборе текста
+
+  // Настройки для Prettier
+  "prettier.singleQuote": true, // Использовать одинарные кавычки вместо двойных
+  "prettier.trailingComma": "es5", // Добавлять запятую в последнем элементе массива или объекта
+
+  // Настройки для ESLint
+  "eslint.autoFixOnSave": true, // Автоматически исправлять ошибки ESLint при сохранении
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ], // Проверка этих файлов
+  "eslint.alwaysShowStatus": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
+}

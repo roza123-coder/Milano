@@ -1,0 +1,1 @@
+export { DetailCatalog } from './DetailCatalog'

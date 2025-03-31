@@ -1,18 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
 
-// Асинхронное действие для загрузки товаров
-export const fetchProducts = createAsyncThunk(
+export const getProducts = createAsyncThunk(
   'products/fetchProducts',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await fetch('http://localhost:3000/products')
-      if (!response.ok) {
-        throw new Error(`Ошибка: ${response.status}`)
-      }
-      return await response.json()
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
+  async () => {
+    const response = await axios.get('http://localhost:8080/products')
+    return response.data
   },
 )
 
@@ -25,15 +18,15 @@ const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProducts.pending, (state) => {
+      .addCase(getProducts.pending, (state) => {
         state.loading = true
         state.error = null
       })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
+      .addCase(getProducts.fulfilled, (state, action) => {
         state.loading = false
         state.products = action.payload
       })
-      .addCase(fetchProducts.rejected, (state, action) => {
+      .addCase(getProducts.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload
       })

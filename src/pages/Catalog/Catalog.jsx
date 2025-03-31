@@ -9,10 +9,10 @@ import styles from './Catalog.module.scss'
 import { addToCart, removeFromCart } from '@/slices/cartSlice'
 
 export const Catalog = () => {
-  const [products, setProducts] = useState([])
   const [filtered, setFiltered] = useState([])
   const [searchParams, setSearchParams] = useSearchParams()
   const CartItems = useSelector((state) => state.cart.items)
+  const products = useSelector((state) => state.products.products)
 
   const dispatch = useDispatch()
 
@@ -21,18 +21,6 @@ export const Catalog = () => {
       setSearchParams({ search: '' }, { replace: true })
     }
   }, [searchParams, setSearchParams])
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/products')
-        setProducts(response.data)
-      } catch (error) {
-        console.error('Ошибка при загрузке данных:', error)
-      }
-    }
-    getData()
-  }, [])
 
   useEffect(() => {
     const searchValue = searchParams.get('search')?.toLowerCase() || ''

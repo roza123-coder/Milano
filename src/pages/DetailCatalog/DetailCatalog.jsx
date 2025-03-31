@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 export const DetailCatalog = () => {
   const { id } = useParams()
-  const [product, setProduct] = useState([])
-  useEffect(() => {
-    const getData = async () => {
-      const data = await fetch(`https://fakestoreapi.com/products/${id}`)
-      const result = await data.json()
-      setProduct(result)
-    }
-    getData()
-  }, [])
+  const products = useSelector((state) => state.products.products)
+  const product = products[id - 1]
 
   return (
     <div>

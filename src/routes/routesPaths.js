@@ -5,4 +5,5 @@ export const ROUTER_PATHS = {
   detail_catalog: '/catalog/:id',
   cart: '/cart',
   checkout: '/checkout',
+  registration: '/registration',
 }
